@@ -1,17 +1,17 @@
 
 
-#' Content
+#' Items
 #'
-#' @description Query and return all available content in the API.
+#' @description Query and return one or more API items.
 #'
 #' @description See the
-#' [API docs](https://open-platform.theguardian.com/documentation/search) for
-#' full details on the query options available for this content endpoint.
+#' [API docs](https://open-platform.theguardian.com/documentation/item) for
+#' full details on the query options available for this endpoint.
 #'
-#' @param query A string, containing the search query. Defaults to `NULL`,
-#' which returns all available content subject to other parameters.
-#' Supports AND, OR and NOT operators, and exact phrase queries
-#' using double quotes. E.g. `'"football" OR "politics"'`.
+#' @param query A string, containing the search query, either the URL of a
+#' single item or all items listed on a given page.
+#' For example, to return all articles by a given contributor, use
+#' `"profile/{contributorname}"`, e.g. `"profile/brianlogan"`.
 #' @param show_fields A string or character vector of fields to include in
 #' the returned data. Defaults to `"all"`. See details for a list of options.
 #' @param show_tags A string or character vector of tags to include in
@@ -91,14 +91,14 @@
 #'  x <- gu_content(query = "films")
 #' }
 
-gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
+gu_items <- function(query = NULL, show_fields = "all", show_tags = "all",
                        tag = NULL, from_date = NULL, to_date = NULL,
                        use_date = "published", ..., verbose = TRUE,
                        tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
-    search_query <- paste0("search?q=", utils::URLencode(query), "&")
+    search_query <- paste0(utils::URLencode(query), "?")
   } else {
-    search_query <- "search?"
+    stop("query must be specified")
   }
 
   if (is.null(show_fields)) {
@@ -127,11 +127,11 @@ gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
-      paste0(
-        "&", toupper(names(dots[i])), "=",
-        paste0(dots[[i]], collapse = ",")
-      ),
-      ""
+                             paste0(
+                               "&", toupper(names(dots[i])), "=",
+                               paste0(dots[[i]], collapse = ",")
+                             ),
+                             ""
     )
   }
 
@@ -155,6 +155,6 @@ gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
   if (tidy == TRUE) {
     df <- gu_tidy(df, tidy_style)
   }
-    df
+  df
 
 }

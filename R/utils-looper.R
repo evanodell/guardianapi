@@ -1,35 +1,41 @@
 
-gu_data_grabber <- function(query) {
+gu_data_grabber <- function(search_query_url, verbose) {
 
   ## do the nomisr style thing of grabbing the first page, checking the size, and then running more queries if over 50
 
-first_df <- jsonlite::fromJSON(paste0(query, "&page-size=50"), flatten = TRUE)
-
-jpage <- first_df$response$pages
-
-if (jpage > 50) {
-
-seq_list <- seq(from = 2, to = jpage, by = 1)
-
-for (i in seq_along(seq_list)) {
-
   if (verbose == TRUE) {
-    message("Retrieving additional page ", seq_list[[i]], " of ", jpage)
+    message("Retrieving page 1")
   }
 
-  mydata <- jsonlite::fromJSON(
-      paste0(query, "&page-size=50&page=", seq_list[[i]]),
-    flatten = TRUE)
+  first_df <- jsonlite::fromJSON(paste0(search_query_url, "&page-size=50"),
+                                 flatten = TRUE)
 
-  pages[[seq_list[[i]] ]] <- mydata$response$results
+  jpage <- first_df$response$pages
+
+  jpage <- ifelse(is.null(jpage), 1, jpage)
+
+  pages <- list()
+
+  if (jpage >= 2) {
+    seq_list <- seq(from = 2, to = jpage, by = 1)
+
+    for (i in seq_along(seq_list)) {
+      if (verbose == TRUE) {
+        message("Retrieving additional page ", seq_list[[i]], " of ", jpage)
+      }
+
+      mydata <- jsonlite::fromJSON(
+        paste0(search_query_url, "&page-size=50&page=", seq_list[[i]]),
+        flatten = TRUE
+      )
+
+      pages[[seq_list[[i]] ]] <- mydata$response$results
+    }
+
+    df <- tibble::as_tibble(dplyr::bind_rows(first_df$response$results, pages))
+  } else {
+    df <- tibble::as_tibble(first_df$response$results)
+  }
+
+  df
 }
-
-  df <- tibble::as.tibble(dplyr::bind_rows(first_df$response$results, pages))
-
-} else {
-  first_df$response$results
-}
-
-}
-
-

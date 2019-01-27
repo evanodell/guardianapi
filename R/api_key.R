@@ -1,3 +1,10 @@
+#' API Key
+#'
+#' @param check_env If `TRUE`
+#'
+#' @export
+#'
+
 gu_api_key <- function(check_env = FALSE) {
   if (check_env) {
     key <- Sys.getenv("GU_API_KEY")
