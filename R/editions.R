@@ -8,20 +8,21 @@
 #' an International ("international") front page.
 #'
 #' @param query A string, which will return editions based on that string.
-#' Defaults to `NULL` and returns all editions.
+#' Defaults to `NULL` and returns all editions. Strings are not case sensitive.
 #' @inheritParams gu_content
 #'
 #' @return A tibble with details of the given edition.
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' uk <- gu_editions(query = "uk")
 #' }
-
+#'
 gu_editions <- function(query = NULL, ..., verbose = TRUE,
-                       tidy = TRUE, tidy_style = "snake_case") {
+                        tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
-    search_query <- paste0("editions?q=", utils::URLencode(query), "&")
+    search_query <- paste0("editions?q=", utils::URLencode(tolower(query)), "&")
   } else {
     search_query <- "editions?"
   }
@@ -32,11 +33,11 @@ gu_editions <- function(query = NULL, ..., verbose = TRUE,
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
-                             paste0(
-                               "&", toupper(names(dots[i])), "=",
-                               paste0(dots[[i]], collapse = ",")
-                             ),
-                             ""
+      paste0(
+        "&", toupper(names(dots[i])), "=",
+        paste0(dots[[i]], collapse = ",")
+      ),
+      ""
     )
   }
 
@@ -52,5 +53,4 @@ gu_editions <- function(query = NULL, ..., verbose = TRUE,
     df <- gu_tidy(df, tidy_style)
   }
   df
-
 }

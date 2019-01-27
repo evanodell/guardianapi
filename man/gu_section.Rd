@@ -36,4 +36,5 @@ full details on the query options available for the sections endpoint.
 \dontrun{
 section <- gu_section(query = "business")
 }
+
 }

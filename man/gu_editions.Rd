@@ -9,7 +9,7 @@ gu_editions(query = NULL, ..., verbose = TRUE, tidy = TRUE,
 }
 \arguments{
 \item{query}{A string, which will return editions based on that string.
-Defaults to \code{NULL} and returns all editions.}
+Defaults to \code{NULL} and returns all editions. Strings are not case sensitive.}
 
 \item{...}{Use to pass any other parameters to the API. See the
 \href{https://open-platform.theguardian.com/documentation/search}{docs} for a
@@ -34,4 +34,5 @@ an International ("international") front page.
 \dontrun{
 uk <- gu_editions(query = "uk")
 }
+
 }

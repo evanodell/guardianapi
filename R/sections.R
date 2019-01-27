@@ -16,11 +16,11 @@
 #' @inheritParams gu_content
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' section <- gu_section(query = "business")
 #' }
-
-
+#'
 gu_section <- function(query = NULL, ..., verbose = TRUE,
                        tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
@@ -38,13 +38,10 @@ gu_section <- function(query = NULL, ..., verbose = TRUE,
   if (tidy == TRUE) {
     df <- gu_tidy(df, tidy_style)
     if ("editions" %in% colnames(df)) {
-
-      for (i in 1:length(df$editions)) {
-            df$editions[[i]] <- gu_tidy(df$editions[[i]], tidy_style)
+      for (i in seq_along(df$editions)) {
+        df$editions[[i]] <- gu_tidy(df$editions[[i]], tidy_style)
       }
-
     }
   }
   df
-
 }

@@ -50,15 +50,15 @@
 #' @return A tibble with details on tags.
 #' @export
 #'
-#' @examples \dontrun{
-#'   tags1 <- gu_tags(query = "apple")
+#' @examples
+#' \dontrun{
+#' tags1 <- gu_tags(query = "apple")
 #' }
-
+#' 
 gu_tags <- function(query = NULL, tag_type = NULL,
                     section = NULL, references = NULL, reference_type = NULL,
                     show_references = "all", ..., verbose = TRUE,
                     tidy = TRUE, tidy_style = "snake_case") {
-
   if (!is.null(query)) {
     search_query <- paste0("tags?q=", utils::URLencode(query), "&")
   } else {
@@ -75,48 +75,55 @@ gu_tags <- function(query = NULL, tag_type = NULL,
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
-                             paste0(
-                               "&", toupper(names(dots[i])), "=",
-                               paste0(dots[[i]], collapse = ",")
-                             ),
-                             ""
+      paste0(
+        "&", toupper(names(dots[i])), "=",
+        paste0(dots[[i]], collapse = ",")
+      ),
+      ""
     )
   }
 
   dots_query <- paste0(dots_vector, collapse = "")
 
   if (!is.null(references)) {
-    references_query <-  paste0("&references=",
-                                paste0(references, collapse = ","))
+    references_query <- paste0(
+      "&references=",
+      paste0(references, collapse = ",")
+    )
   } else {
     references_query <- ""
   }
 
 
   if (!is.null(reference_type)) {
-    references_type_query <-  paste0("&reference-type=",
-                                     paste0(reference_type, collapse = ","))
+    references_type_query <- paste0(
+      "&reference-type=",
+      paste0(reference_type, collapse = ",")
+    )
   } else {
     references_type_query <- ""
   }
 
   if (!is.null(show_references)) {
-    show_references_query <-  paste0("&show-references=",
-                                     paste0(show_references, collapse = ","))
+    show_references_query <- paste0(
+      "&show-references=",
+      paste0(show_references, collapse = ",")
+    )
   } else {
     show_references_query <- ""
   }
 
   if (!is.null(section)) {
-    section_query <-  paste0("&section=", paste0(section, collapse = ","))
+    section_query <- paste0("&section=", paste0(section, collapse = ","))
   } else {
     section_query <- ""
   }
 
   if (!is.null(tag_type)) {
     tag_type_query <- ifelse(!is.null(tag_type),
-                             paste0("&tag=", paste0(tag_type, collapse = ",")),
-                             "")
+      paste0("&tag=", paste0(tag_type, collapse = ",")),
+      ""
+    )
   } else {
     tag_type_query <- ""
   }
@@ -133,6 +140,4 @@ gu_tags <- function(query = NULL, tag_type = NULL,
     df <- gu_tidy(df, tidy_style)
   }
   df
-
-
-  }
+}

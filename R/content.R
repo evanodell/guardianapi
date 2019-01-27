@@ -87,10 +87,11 @@
 #' @return A tibble.
 #' @export
 #'
-#' @examples \dontrun{
-#'  x <- gu_content(query = "films")
+#' @examples
+#' \dontrun{
+#' x <- gu_content(query = "films")
 #' }
-
+#' 
 gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
                        tag = NULL, from_date = NULL, to_date = NULL,
                        use_date = "published", ..., verbose = TRUE,
@@ -109,13 +110,13 @@ gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
     show_tags <- "all"
   }
 
-  if(!is.null(from_date)){
+  if (!is.null(from_date)) {
     from_date_q <- paste0("&from-date=", from_date)
   } else {
     from_date_q <- ""
   }
 
-  if(!is.null(to_date)){
+  if (!is.null(to_date)) {
     to_date_q <- paste0("&to-date=", to_date)
   } else {
     to_date_q <- ""
@@ -137,12 +138,13 @@ gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
 
   dots_query <- paste0(dots_vector, collapse = "")
 
-  fields_query <-  paste0("&show-fields=", paste0(show_fields, collapse = ","))
+  fields_query <- paste0("&show-fields=", paste0(show_fields, collapse = ","))
 
-  show_tags_query <-  paste0("&show-tags=", paste0(show_tags, collapse = ","))
+  show_tags_query <- paste0("&show-tags=", paste0(show_tags, collapse = ","))
 
   tag_query <- ifelse(!is.null(tag),
-                      paste0("&tag=", paste0(tag, collapse = ",")), "")
+    paste0("&tag=", paste0(tag, collapse = ",")), ""
+  )
 
   search_query_url <- paste0(
     base_url, search_query, "api-key=", getOption("gu.API.key"),
@@ -155,6 +157,5 @@ gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
   if (tidy == TRUE) {
     df <- gu_tidy(df, tidy_style)
   }
-    df
-
+  df
 }

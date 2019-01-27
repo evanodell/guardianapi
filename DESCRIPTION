@@ -7,7 +7,11 @@ Authors@R:
            role = c("aut", "cre"),
            email = "evanodell91@gmail.com",
            comment = c(ORCID = "0000-0003-1845-808X"))
-Description: What the package does (one paragraph).
+Description: Access to the 'Guardian' open API
+  <https://open-platform.theguardian.com/>, containing all articles published 
+  in the 'Guardian' from 1999 to the present.
+URL: https://docs.evanodell.com/guardianapi
+BugReports: https://github.com/evanodell/guardianapi/issues
 License: MIT + file LICENSE
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
@@ -18,10 +22,13 @@ Imports:
   httr,
   jsonlite,
   tibble,
-  rlang,
-  rsdmx
+  rlang
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    lubridate,
+    ggplot2,
+    covr,
+    scales
 VignetteBuilder: knitr

@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 Let's look at a few reviewers. For example, I noticed that comedy critic Brian Logan seemed to give out very few five star or one star reviews, so I wanted to see if that was true. I've included all his reviews from 2002--2018
 
 ```{r, logan-example}
+library(guardianapi)
 library(dplyr)
 library(lubridate)
 library(ggplot2)

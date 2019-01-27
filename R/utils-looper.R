@@ -1,14 +1,12 @@
 
 gu_data_grabber <- function(search_query_url, verbose) {
-
-  ## do the nomisr style thing of grabbing the first page, checking the size, and then running more queries if over 50
-
   if (verbose == TRUE) {
     message("Retrieving page 1")
   }
 
   first_df <- jsonlite::fromJSON(paste0(search_query_url, "&page-size=50"),
-                                 flatten = TRUE)
+    flatten = TRUE
+  )
 
   jpage <- first_df$response$pages
 

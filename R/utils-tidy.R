@@ -4,7 +4,6 @@
 # tidy function
 
 gu_tidy <- function(df, tidy_style) {
-
   names(df) <- gsub("fields\\.", "", names(df), perl = TRUE)
 
   if ("standfirst" %in% names(df)) {
@@ -23,8 +22,10 @@ gu_tidy <- function(df, tidy_style) {
   }
 
   if (any(names(df) == "firstPublicationDate")) {
-    df$firstPublicationDate <- as.POSIXct(gsub("T", " ",
-                                               df$firstPublicationDate))
+    df$firstPublicationDate <- as.POSIXct(gsub(
+      "T", " ",
+      df$firstPublicationDate
+    ))
   }
 
   if (any(names(df) == "newspaperEditionDate")) {
@@ -49,6 +50,5 @@ gu_tidy <- function(df, tidy_style) {
     names(df) <- tolower(names(df))
   }
 
-    df
-
+  df
 }

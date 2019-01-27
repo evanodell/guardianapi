@@ -76,6 +76,7 @@ The following are the options for the \code{show_references} parameter:
 
 \examples{
 \dontrun{
-  tags1 <- gu_tags(query = "apple")
+tags1 <- gu_tags(query = "apple")
 }
+
 }

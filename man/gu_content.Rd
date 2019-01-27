@@ -113,6 +113,7 @@ using the \code{query} parameter.
 
 \examples{
 \dontrun{
- x <- gu_content(query = "films")
+x <- gu_content(query = "films")
 }
+
 }
