@@ -12,11 +12,15 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+options("gu.API.key" = "test")
 ```
 
 # guardianapi
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/guardianapi)](https://cran.r-project.org/package=guardianapi)
+[![GitHub tag](https://img.shields.io/github/tag/evanodell/guardianapi.svg)](https://github.com/evanodell/guardianapi)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/guardianapi)](https://dgrtwo.shinyapps.io/cranview/)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/evanodell/guardianapi?branch=master&svg=true)](https://ci.appveyor.com/project/evanodell/guardianapi)
 [![Travis build status](https://travis-ci.org/evanodell/guardianapi.svg?branch=master)](https://travis-ci.org/evanodell/guardianapi)
 [![Coverage status](https://codecov.io/gh/evanodell/guardianapi/branch/master/graph/badge.svg)](https://codecov.io/github/evanodell/guardianapi?branch=master)
@@ -24,8 +28,54 @@ knitr::opts_chunk$set(
 
 
 
-Access to the 'Guardian' open API <https://open-platform.theguardian.com/>, containing all articles published in the 'Guardian' from 1999 to the present.
+
+Access to the Guardian open API <https://open-platform.theguardian.com/>, containing all articles published in the [Guardian](https://www.theguardian.com/) from 1999 to the present. An API key is required, sign up [here](https://open-platform.theguardian.com/access/).
+
+## Installation
+<!--
+`guardianapi` is available on CRAN:
+
+```{r cran-installation, eval = FALSE}
+install.packages("guardianapi")
+```
+-->
+You can install the development version `guardianapi` from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("evanodell/guardianapi")
+```
 
 
+## Usage
 
-Please note that the 'guardianapi' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Save your API key as the environmental variable `GU_API_KEY`, or use the `gu_api_key()` function to set a key for a single session.
+
+`guardianapi` contains functions to query and retrieve articles, tags, editions and sections. For example, return all tags containing the string "apple", which includes both the technology company and Fiona Apple, amongst others.
+
+```{r example1}
+library(guardianapi)
+
+tags1 <- gu_tags(query = "apple")
+
+tibble::glimpse(tags1)
+```
+
+Return all articles with the string "relationships" and the tag "lifeandstyle/sex" from December 2018:
+
+```{r example2}
+relations_sex <- gu_content(query = "relationships", from_date = "2018-12-01",
+                            to_date = "2018-12-31", tag = "lifeandstyle/sex")
+
+tibble::glimpse(relations_sex)
+```
+
+
+See the full package documentation at [docs.evanodell.com/guardianapi](https://docs.evanodell.com/guardianapi).
+
+
+## Meta
+
+Please note that the `guardianapi` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+
+This package is not affiliated with or supported by The Guardian.

@@ -8,7 +8,8 @@ gu_api_key(check_env = FALSE)
 }
 \arguments{
 \item{check_env}{If \code{TRUE}, will check the environment variable \code{GU_API_KEY}
-first before asking for user input.}
+first before asking for user input. If found, assigns the API key to the
+\code{gu.API.key} variable.}
 }
 \description{
 A function to assign or re-assign the API key. Register for

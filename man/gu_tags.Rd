@@ -11,11 +11,11 @@ gu_tags(query = NULL, tag_type = NULL, section = NULL,
 \arguments{
 \item{query}{A string, which will return all tags containing that string.}
 
-\item{tag_type}{One or more of "\code{keyword}", "\code{series}", "\code{contributor}",
+\item{tag_type}{One of "\code{keyword}", "\code{series}", "\code{contributor}",
 "\code{tone}", "\code{type}" or "\code{blog}". Defaults to \code{NULL} and does not filter by
 tag type.}
 
-\item{section}{Return only tags of that section}
+\item{section}{Return only tags of a given section.}
 
 \item{references}{Return only tags with those references}
 
@@ -76,7 +76,14 @@ The following are the options for the \code{show_references} parameter:
 
 \examples{
 \dontrun{
-tags1 <- gu_tags(query = "apple")
+# Return all tags containing "apple"
+apple1 <- gu_tags(query = "apple")
+
+# Return all tags containing "apple" in the technology section
+apple2 <- gu_tags(query = "apple", section = "technology")
+
+# Return all contributor tags in the life and style section
+tag_sec_type <- gu_tags(section = "lifeandstyle", tag_type = "contributor")
 }
 
 }
