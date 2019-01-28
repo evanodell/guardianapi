@@ -21,7 +21,7 @@ options("gu.API.key" = "test")
 
 Let's look at a few reviewers. For example, I noticed that comedy critic Brian Logan seemed to give out very few five star or one star reviews, so I wanted to see if that was true. I've included all his reviews from 2002--2018
 
-```{r, logan-example}
+```{r logan-example, message=FALSE}
 library(guardianapi)
 library(dplyr)
 library(lubridate)
@@ -55,7 +55,7 @@ p_logan
 ```
 
 
-```{r, logan-area-plot}
+```{r logan-area-plot, message=FALSE}
 p_logan_area <- ggplot(data = logan_summary,
                   aes(x = year, y = perc, group = star_rating)) + 
   geom_area(aes(fill = star_rating)) + 
@@ -70,7 +70,7 @@ As you can see here, Brian Logan is pretty stingy with five star reviews, and di
 Now let's take a look at film critic Peter Bradshaw. I've used the same time span, and I've removed the single [0-star rating](https://www.theguardian.com/culture/2002/oct/04/artsfeatures8) given to the 2008 film [Boat Trip](https://www.imdb.com/title/tt0285462/). There are more than four times as many film reviews from Peter Bradshaw as there are comedy reviews from Brian Logan over the same time period.
 
 
-```{r, bradshaw-example}
+```{r bradshaw-example, message=FALSE}
 library(dplyr)
 library(lubridate)
 library(ggplot2)
@@ -103,7 +103,7 @@ p_bradshaw
 ```
 
 
-```{r}
+```{r bradshaw-area, message=FALSE}
 p_bradshaw_area <- ggplot(data = bradshaw_summary,
                   aes(x = year, y = perc, group = star_rating)) + 
   geom_area(aes(fill = star_rating)) + 
@@ -115,7 +115,7 @@ p_bradshaw_area
 
 We can compare the distributions of ratings given by the two critics.
 
-```{r comp-hist}
+```{r comp-hist, message=FALSE}
 
 bradshaw_reviews$byline <- "Peter Bradshaw"
 
