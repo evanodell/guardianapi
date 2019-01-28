@@ -91,7 +91,7 @@
 #' \dontrun{
 #' x <- gu_content(query = "films")
 #' }
-#'
+#' 
 gu_items <- function(query = NULL, show_fields = "all", show_tags = "all",
                      tag = NULL, from_date = NULL, to_date = NULL,
                      use_date = "published", ..., verbose = TRUE,

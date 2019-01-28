@@ -54,14 +54,14 @@
 #' \dontrun{
 #' # Return all tags containing "apple"
 #' apple1 <- gu_tags(query = "apple")
-#'
+#' 
 #' # Return all tags containing "apple" in the technology section
 #' apple2 <- gu_tags(query = "apple", section = "technology")
-#'
+#' 
 #' # Return all contributor tags in the life and style section
 #' tag_sec_type <- gu_tags(section = "lifeandstyle", tag_type = "contributor")
 #' }
-#'
+#' 
 gu_tags <- function(query = NULL, tag_type = NULL,
                     section = NULL, references = NULL, reference_type = NULL,
                     show_references = "all", ..., verbose = TRUE,
@@ -127,17 +127,17 @@ gu_tags <- function(query = NULL, tag_type = NULL,
   }
 
   if (!is.null(tag_type)) {
-
     tag_type <- tolower(tag_type)
 
-    if (tag_type %in% c("keyword", "series", "contributor",
-                        "tone", "type", "blog")) {
+    if (tag_type %in% c(
+      "keyword", "series", "contributor",
+      "tone", "type", "blog"
+    )) {
       tag_type_query <- paste0("&type=", tag_type)
     } else {
       warning("tag_type not set, please check your parameters.")
       tag_type_query <- ""
     }
-
   } else {
     tag_type_query <- ""
   }

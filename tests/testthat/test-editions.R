@@ -20,6 +20,4 @@ test_that("editions works", {
   expect_true(tibble::is_tibble(int_ed))
   expect_true("International" %in% int_ed$edition)
   expect_equal(nrow(int_ed), 1)
-
-
 })

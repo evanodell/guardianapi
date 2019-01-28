@@ -20,16 +20,18 @@
 #' @examples
 #' \dontrun{
 #' business <- gu_section(query = "business")
-#'
+#' 
 #' foot_pol <- gu_section(query = c("politics", "business", "football"))
 #' }
-
+#' 
 gu_section <- function(query = NULL, ..., verbose = TRUE,
                        tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
-    search_query <- paste0("sections?q=",
-                           utils::URLencode(paste0(query, collapse = ",")),
-                           "&")
+    search_query <- paste0(
+      "sections?q=",
+      utils::URLencode(paste0(query, collapse = ",")),
+      "&"
+    )
   } else {
     search_query <- "sections?"
   }

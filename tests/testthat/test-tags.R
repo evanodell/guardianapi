@@ -19,12 +19,11 @@ test_that("tags work", {
   expect_length(tag_isbn, 8)
   expect_true(tibble::is_tibble(tag_isbn))
   expect_true("web_title" %in% colnames(tag_isbn))
-  expect_equal("Generation X",  tag_isbn$web_title)
+  expect_equal("Generation X", tag_isbn$web_title)
 
 
   tag_sec_type <- gu_tags(section = "lifeandstyle", tag_type = "contributor")
   expect_length(tag_sec_type, 13)
   expect_true("Yotam Ottolenghi" %in% tag_sec_type$web_title)
   expect_equal(tag_sec_type$type[[1]], "contributor")
-
 })

@@ -30,14 +30,15 @@ test_that("content testing works works", {
   expect_length(names(c), 34)
   expect_true(
     "Friday briefing: Who's not meeting who at the G20" %in% c$web_title
-    )
+  )
 
 
-  rel_sex <- gu_content(query = "relationships", from_date = "2018-11-30",
-                        to_date = "2018-12-30", tag = "lifeandstyle/sex")
+  rel_sex <- gu_content(
+    query = "relationships", from_date = "2018-11-30",
+    to_date = "2018-12-30", tag = "lifeandstyle/sex"
+  )
   expect_true(tibble::is_tibble(rel_sex))
   expect_length(rel_sex, 40)
   expect_equal(nrow(rel_sex), 5)
   expect_true("lifeandstyle" %in% rel_sex$section_id)
-
 })
