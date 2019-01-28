@@ -1,3 +1,3 @@
-# guardianapi 0.0.0.9000
+# guardianapi 0.1.0
 
 * Initial release of `guardianapi` package.

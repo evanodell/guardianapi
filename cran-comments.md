@@ -15,4 +15,6 @@ newspaper's open data platform.
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+Maintainer: 'Evan Odell <evanodell91@gmail.com>'
+
+New submission
