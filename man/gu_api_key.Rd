@@ -7,8 +7,17 @@
 gu_api_key(check_env = FALSE)
 }
 \arguments{
-\item{check_env}{If \code{TRUE}}
+\item{check_env}{If \code{TRUE}, will check the environment variable \code{GU_API_KEY}
+first before asking for user input.}
 }
 \description{
-API Key
+A function to assign or re-assign the API key. Register for
+an API key on the
+\href{https://open-platform.theguardian.com/access/}{Guardian Open Platform} site.
+
+By default, \code{guardianapi} will look for the \code{GU_API_KEY}
+environmental variable when the package is loaded. If found the key is stored
+in the session option \code{gu.API.key}. This function can be used to set the key
+for a single session. To avoid having to use this function, use the .Renviron
+file to store you key as \code{GU_API_KEY}.
 }

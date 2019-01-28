@@ -34,5 +34,4 @@ an International ("international") front page.
 \dontrun{
 uk <- gu_editions(query = "uk")
 }
-
 }

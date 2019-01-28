@@ -37,7 +37,7 @@ test_that("content testing works works", {
                         to_date = "2018-12-30", tag = "lifeandstyle/sex")
   expect_true(tibble::is_tibble(rel_sex))
   expect_length(rel_sex, 40)
-  expect_equal(nrow(rel_sex), 40)
+  expect_equal(nrow(rel_sex), 5)
   expect_true("lifeandstyle" %in% rel_sex$section_id)
 
 })

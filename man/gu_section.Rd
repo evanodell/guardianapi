@@ -11,7 +11,8 @@ gu_section(query = NULL, ..., verbose = TRUE, tidy = TRUE,
 \item{query}{A string, containing the search query. Defaults to \code{NULL},
 which returns all available sections subject to other parameters.
 Supports AND, OR and NOT operators, and exact phrase queries
-using double quotes. E.g. \code{'"football" OR "politics"'}.}
+using double quotes. E.g. \code{'"football" OR "politics"'}. Also accepts a
+character vector of section names and returns those sections.}
 
 \item{...}{Use to pass any other parameters to the API. See the
 \href{https://open-platform.theguardian.com/documentation/search}{docs} for a
@@ -34,7 +35,8 @@ full details on the query options available for the sections endpoint.
 }
 \examples{
 \dontrun{
-section <- gu_section(query = "business")
-}
+business <- gu_section(query = "business")
 
+foot_pol <- gu_section(query = c("politics", "business", "football"))
+}
 }

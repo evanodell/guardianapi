@@ -114,6 +114,9 @@ using the \code{query} parameter.
 \examples{
 \dontrun{
 x <- gu_content(query = "films")
+
+y <- gu_content(query = "relationships",
+                from_date = "2018-11-30", to_date = "2018-12-30")
 }
 
 }
