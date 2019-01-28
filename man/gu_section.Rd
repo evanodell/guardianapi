@@ -39,4 +39,5 @@ business <- gu_section(query = "business")
 
 foot_pol <- gu_section(query = c("politics", "business", "football"))
 }
+
 }

@@ -30,8 +30,8 @@
 #'  parameters. One of `"published"`, `"first-publication"`,
 #'  `"newspaper-edition"` or `"last-modified"`. Defaults to `"published"`.
 #' @param ... Use to pass any other parameters to the API. See the
-#' [docs](https://open-platform.theguardian.com/documentation/search) for a
-#' full list of options.
+#' [item docs](https://open-platform.theguardian.com/documentation/item) for a
+#' full list of options, including those not included here.
 #' @param verbose Prints messages to console. Defaults to `TRUE`.
 #' @param tidy Convert variable names to snake_case, remove some `"<NA>"`
 #' strings. Defaults to `TRUE`.
@@ -91,7 +91,7 @@
 #' \dontrun{
 #' x <- gu_content(query = "films")
 #' }
-#' 
+#'
 gu_items <- function(query = NULL, show_fields = "all", show_tags = "all",
                      tag = NULL, from_date = NULL, to_date = NULL,
                      use_date = "published", ..., verbose = TRUE,

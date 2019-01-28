@@ -7,6 +7,9 @@
 #'
 #' @param query A string, which will return editions based on that string.
 #' Defaults to `NULL` and returns all editions. Strings are not case sensitive.
+#' @param ... Pass additional options to API. There are no additional
+#' options as of this writing. See the
+#' [endpoint docs](https://open-platform.theguardian.com/documentation/edition)
 #' @inheritParams gu_content
 #'
 #' @return A tibble with details of the given edition.
@@ -16,7 +19,7 @@
 #' \dontrun{
 #' uk <- gu_editions(query = "uk")
 #' }
-#' 
+#'
 gu_editions <- function(query = NULL, ..., verbose = TRUE,
                         tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
