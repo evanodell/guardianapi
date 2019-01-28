@@ -19,7 +19,7 @@
 #' \dontrun{
 #' uk <- gu_editions(query = "uk")
 #' }
-#'
+#' 
 gu_editions <- function(query = NULL, ..., verbose = TRUE,
                         tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
