@@ -1,6 +1,4 @@
 
-
-
 #' Editions
 #'
 #' The different main pages of the Guardian. As of January 2019 they are the
@@ -18,7 +16,7 @@
 #' \dontrun{
 #' uk <- gu_editions(query = "uk")
 #' }
-#'
+
 gu_editions <- function(query = NULL, ..., verbose = TRUE,
                         tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {

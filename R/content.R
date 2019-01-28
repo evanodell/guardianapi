@@ -90,8 +90,11 @@
 #' @examples
 #' \dontrun{
 #' x <- gu_content(query = "films")
+#'
+#' y <- gu_content(query = "relationships",
+#'                 from_date = "2018-11-30", to_date = "2018-12-30")
 #' }
-#' 
+#'
 gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
                        tag = NULL, from_date = NULL, to_date = NULL,
                        use_date = "published", ..., verbose = TRUE,

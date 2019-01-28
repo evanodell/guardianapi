@@ -12,19 +12,24 @@
 #' @param query A string, containing the search query. Defaults to `NULL`,
 #' which returns all available sections subject to other parameters.
 #' Supports AND, OR and NOT operators, and exact phrase queries
-#' using double quotes. E.g. `'"football" OR "politics"'`.
+#' using double quotes. E.g. `'"football" OR "politics"'`. Also accepts a
+#' character vector of section names and returns those sections.
 #' @inheritParams gu_content
 #'
 #' @export
 #' @examples
 #' \dontrun{
-#' section <- gu_section(query = "business")
-#' }
+#' business <- gu_section(query = "business")
 #'
+#' foot_pol <- gu_section(query = c("politics", "business", "football"))
+#' }
+
 gu_section <- function(query = NULL, ..., verbose = TRUE,
                        tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
-    search_query <- paste0("sections?q=", utils::URLencode(query), "&")
+    search_query <- paste0("sections?q=",
+                           utils::URLencode(paste0(query, collapse = ",")),
+                           "&")
   } else {
     search_query <- "sections?"
   }

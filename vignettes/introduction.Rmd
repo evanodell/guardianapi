@@ -19,6 +19,11 @@ options("gu.API.key" = "test")
 ```
 
 
+# Functions
+
+`guardianapi` contains functions to search and retrieve articles, tags and editions from the [Guardian open data platform](https://open-platform.theguardian.com/documentation/).
+
+
 Let's look at a few reviewers. For example, I noticed that comedy critic Brian Logan seemed to give out very few five star or one star reviews, so I wanted to see if that was true. I've included all his reviews from 2002--2018
 
 ```{r logan-example, message=FALSE}
@@ -144,5 +149,26 @@ comp_p <- ggplot(comp_df,
   guides(colour = FALSE)
 
 comp_p
+```
+
+
+We can also use `gu_content()` for more general queries. For example, here's all the articles returned for "relationships" between the two given dates:
+
+```{r relationships-demo, message=FALSE}
+relations <- gu_content(query = "relationships", from_date = "2018-11-30",
+                        to_date = "2018-12-30")
+
+tibble::glimpse(relations)
+
+```
+
+Use the `tag` parameter to limit articles to particular sections:
+
+
+```{r}
+relations_sex <- gu_content(query = "relationships", from_date = "2018-11-30",
+                            to_date = "2018-12-30", tag = "lifeandstyle/sex")
+
+tibble::glimpse(relations_sex)
 ```
 

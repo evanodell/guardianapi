@@ -11,7 +11,7 @@ gu_items(query = NULL, show_fields = "all", show_tags = "all",
 }
 \arguments{
 \item{query}{A string, containing the search query, either the URL of a
-single item or all items listed on a given page.
+single item or all items listed under a given profile, tag, etc.
 For example, to return all articles by a given contributor, use
 \code{"profile/{contributorname}"}, e.g. \code{"profile/brianlogan"}.}
 
@@ -95,7 +95,7 @@ using the \code{query} parameter.
 }
 }
 
-\section{#' The following are the options for the \code{show_tags} parameter}{
+\section{The following are the options for the \code{show_tags} parameter}{
 
 \itemize{
 \item "\code{blog}"

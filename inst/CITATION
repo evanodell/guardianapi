@@ -1,0 +1,9 @@
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{guardianapi}: Access the 'Guardian' newspaper open data API",
+         author = c(person("Evan", "Odell")),
+         year = 2019,
+         note = note,
+         doi = "10.5281/zenodo.2551001",
+         url = "https://docs.evanodell.com/guardianapi")

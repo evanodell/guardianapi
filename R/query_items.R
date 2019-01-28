@@ -9,7 +9,7 @@
 #' full details on the query options available for this endpoint.
 #'
 #' @param query A string, containing the search query, either the URL of a
-#' single item or all items listed on a given page.
+#' single item or all items listed under a given profile, tag, etc.
 #' For example, to return all articles by a given contributor, use
 #' `"profile/{contributorname}"`, e.g. `"profile/brianlogan"`.
 #' @param show_fields A string or character vector of fields to include in
@@ -72,7 +72,7 @@
 #' - "`commentCloseDate`" The date the comments have been closed
 #' - "`starRating`"
 #'
-#' @section #' The following are the options for the `show_tags` parameter:
+#' @section The following are the options for the `show_tags` parameter:
 #'
 #' - "`blog`"
 #' - "`contributor`"
@@ -91,7 +91,7 @@
 #' \dontrun{
 #' x <- gu_content(query = "films")
 #' }
-#' 
+#'
 gu_items <- function(query = NULL, show_fields = "all", show_tags = "all",
                      tag = NULL, from_date = NULL, to_date = NULL,
                      use_date = "published", ..., verbose = TRUE,
