@@ -32,7 +32,14 @@
 
 <meta property="og:title" content="API Key — gu_api_key" />
 
-<meta property="og:description" content="API Key" />
+<meta property="og:description" content="A function to assign or re-assign the API key. Register for
+an API key on the
+Guardian Open Platform site.
+By default, guardianapi will look for the GU_API_KEY
+environmental variable when the package is loaded. If found the key is stored
+in the session option gu.API.key. This function can be used to set the key
+for a single session. To avoid having to use this function, use the .Renviron
+file to store you key as GU_API_KEY." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -73,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">guardianapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -162,7 +169,14 @@
 
     <div class="ref-description">
     
-    <p>API Key</p>
+    <p>A function to assign or re-assign the API key. Register for
+an API key on the
+<a href='https://open-platform.theguardian.com/access/'>Guardian Open Platform</a> site.</p>
+<p>By default, <code>guardianapi</code> will look for the <code>GU_API_KEY</code>
+environmental variable when the package is loaded. If found the key is stored
+in the session option <code>gu.API.key</code>. This function can be used to set the key
+for a single session. To avoid having to use this function, use the .Renviron
+file to store you key as <code>GU_API_KEY</code>.</p>
     
     </div>
 
@@ -173,7 +187,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>check_env</th>
-      <td><p>If <code>TRUE</code></p></td>
+      <td><p>If <code>TRUE</code>, will check the environment variable <code>GU_API_KEY</code>
+first before asking for user input. If found, assigns the API key to the
+<code>gu.API.key</code> variable.</p></td>
     </tr>
     </table>
     

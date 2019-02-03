@@ -75,7 +75,7 @@ endpoint for more details." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">guardianapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -183,13 +183,13 @@ endpoint for more details.</p>
     </tr>
     <tr>
       <th>tag_type</th>
-      <td><p>One or more of "<code>keyword</code>", "<code>series</code>", "<code>contributor</code>",
+      <td><p>One of "<code>keyword</code>", "<code>series</code>", "<code>contributor</code>",
 "<code>tone</code>", "<code>type</code>" or "<code>blog</code>". Defaults to <code>NULL</code> and does not filter by
 tag type.</p></td>
     </tr>
     <tr>
       <th>section</th>
-      <td><p>Return only tags of that section</p></td>
+      <td><p>Return only tags of a given section.</p></td>
     </tr>
     <tr>
       <th>references</th>
@@ -261,7 +261,14 @@ strings. Defaults to <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>tags1</span> <span class='kw'>&lt;-</span> <span class='fu'>gu_tags</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"apple"</span>)
+<span class='co'># Return all tags containing "apple"</span>
+<span class='no'>apple1</span> <span class='kw'>&lt;-</span> <span class='fu'>gu_tags</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"apple"</span>)
+
+<span class='co'># Return all tags containing "apple" in the technology section</span>
+<span class='no'>apple2</span> <span class='kw'>&lt;-</span> <span class='fu'>gu_tags</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"apple"</span>, <span class='kw'>section</span> <span class='kw'>=</span> <span class='st'>"technology"</span>)
+
+<span class='co'># Return all contributor tags in the life and style section</span>
+<span class='no'>tag_sec_type</span> <span class='kw'>&lt;-</span> <span class='fu'>gu_tags</span>(<span class='kw'>section</span> <span class='kw'>=</span> <span class='st'>"lifeandstyle"</span>, <span class='kw'>tag_type</span> <span class='kw'>=</span> <span class='st'>"contributor"</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
