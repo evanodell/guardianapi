@@ -32,13 +32,13 @@ options("gu.API.key" = "test")
 Access to the Guardian open API <https://open-platform.theguardian.com/>, containing all articles published in the [Guardian](https://www.theguardian.com/) from 1999 to the present. An API key is required, sign up [here](https://open-platform.theguardian.com/access/).
 
 ## Installation
-<!--
+
 `guardianapi` is available on CRAN:
 
 ```{r cran-installation, eval = FALSE}
 install.packages("guardianapi")
 ```
--->
+
 You can install the development version `guardianapi` from github with:
 
 ```{r gh-installation, eval = FALSE}
@@ -76,6 +76,8 @@ See the full package documentation at [docs.evanodell.com/guardianapi](https://d
 
 ## Meta
 
-Please note that the `guardianapi` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the 'guardianapi' project is released with a
+[Contributor Code of Conduct](https://github.com/evanodell/guardianapi/blob/master/CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
 
 This package is not affiliated with or supported by The Guardian.

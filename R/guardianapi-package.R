@@ -1,8 +1,8 @@
 
 
-#' guardianapi
+#' Tge `guardianapi` package
 #'
-#' Access to the 'Guardian' open API
+#' Access to 'The Guardian' open API
 #' <https://open-platform.theguardian.com/>, containing all articles, video and
 #' images published in the 'Guardian' from 1999 to the present. Users must
 #' [register](https://open-platform.theguardian.com/access/) and use an API key,

@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "evanodell91@gmail.com",
            comment = c(ORCID = "0000-0003-1845-808X"))
-Description: Access to the 'Guardian' open API
+Description: Access to 'The Guardian' newspaper's open API
   <https://open-platform.theguardian.com/>, containing all articles published 
   in 'The Guardian' from 1999 to the present, including article text, metadata,
   tags and contributor information. An API key and registration is required.

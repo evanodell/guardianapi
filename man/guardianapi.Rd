@@ -3,9 +3,9 @@
 \docType{package}
 \name{guardianapi}
 \alias{guardianapi-package}
-\title{guardianapi}
+\title{Tge \code{guardianapi} package}
 \description{
-Access to the 'Guardian' open API
+Access to 'The Guardian' open API
 \url{https://open-platform.theguardian.com/}, containing all articles, video and
 images published in the 'Guardian' from 1999 to the present. Users must
 \href{https://open-platform.theguardian.com/access/}{register} and use an API key,
