@@ -1,6 +1,6 @@
 Package: guardianapi
 Title: Access 'The Guardian' Newspaper Open Data API
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Evan",
            family = "Odell",
@@ -18,7 +18,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.5.0)
 Imports:
   dplyr,
   httr,
@@ -32,5 +32,6 @@ Suggests:
     lubridate,
     ggplot2,
     covr,
-    scales
+    scales, 
+    readr
 VignetteBuilder: knitr

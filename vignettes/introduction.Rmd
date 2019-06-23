@@ -4,7 +4,7 @@ author: "Evan Odell"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Introduction to guardianapi}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,7 +26,7 @@ options("gu.API.key" = "test")
 
 Let's look at a few reviewers. For example, I noticed that comedy critic Brian Logan seemed to give out very few five star or one star reviews, so I wanted to see if that was true. I've included all his reviews from 2002--2018
 
-```{r logan-example, message=FALSE}
+```{r logan-example, eval=FALSE}
 library(guardianapi)
 library(dplyr)
 library(lubridate)
@@ -52,22 +52,35 @@ logan_summary <- logan_reviews %>%
 
 p_logan <- ggplot(data = logan_summary,
                   aes(x = year, y = count, group = star_rating)) + 
-  geom_line(aes(colour = star_rating)) + 
-  scale_colour_viridis_d()
+  geom_line(aes(colour = star_rating), size = 1, alpha = 0.9) + 
+  scale_colour_viridis_d(name = "Rating") + 
+  labs(x="Year", y="Number of Review with Rating") + 
+  theme(axis.text.x = element_text(angle = 45, vjust=0.5))
 
 p_logan
 
 ```
 
+```{r logan-example-plot, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("logan-plot.png")
+```
 
-```{r logan-area-plot, message=FALSE}
+
+```{r logan-area, eval=FALSE}
 p_logan_area <- ggplot(data = logan_summary,
                   aes(x = year, y = perc, group = star_rating)) + 
   geom_area(aes(fill = star_rating)) + 
-  scale_fill_viridis_d() + 
-  scale_y_continuous(labels = scales::percent)
+  scale_y_continuous(labels = scales::percent) + 
+  scale_fill_viridis_d(name = "Rating") + 
+  labs(x="Year", y="Number of Review with Rating") + 
+  theme(axis.text.x = element_text(angle = 45, vjust=0.5)) 
+
 
 p_logan_area
+```
+
+```{r logan-area-plot, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("logan-area.png")
 ```
 
 As you can see here, Brian Logan is pretty stingy with five star reviews, and didn't give out a single five star rating in all of 2017. Likewise, he hasn't completed panned any act with a single star since 2014.
@@ -75,7 +88,7 @@ As you can see here, Brian Logan is pretty stingy with five star reviews, and di
 Now let's take a look at film critic Peter Bradshaw. I've used the same time span, and I've removed the single [0-star rating](https://www.theguardian.com/culture/2002/oct/04/artsfeatures8) given to the 2008 film [Boat Trip](https://www.imdb.com/title/tt0285462/). There are more than four times as many film reviews from Peter Bradshaw as there are comedy reviews from Brian Logan over the same time period.
 
 
-```{r bradshaw-example, message=FALSE}
+```{r bradshaw-example, eval=FALSE}
 library(dplyr)
 library(lubridate)
 library(ggplot2)
@@ -100,27 +113,40 @@ bradshaw_summary <- bradshaw_reviews %>%
 
 p_bradshaw <- ggplot(data = bradshaw_summary,
                   aes(x = year, y = count, group = star_rating)) + 
-  geom_line(aes(colour = star_rating)) + 
-  scale_colour_viridis_d()
+  geom_line(aes(colour = star_rating), size = 1, alpha = 0.9) + 
+  scale_colour_viridis_d(name = "Rating") + 
+  labs(x="Year", y="Number of Review with Rating") + 
+  theme(axis.text.x = element_text(angle = 45, vjust=0.5))
 
 p_bradshaw
 
 ```
 
+```{r bradshaw-example-plot, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("bradshaw-plot.png")
+```
 
-```{r bradshaw-area, message=FALSE}
+
+```{r bradshaw-area, eval=FALSE}
 p_bradshaw_area <- ggplot(data = bradshaw_summary,
                   aes(x = year, y = perc, group = star_rating)) + 
   geom_area(aes(fill = star_rating)) + 
-  scale_fill_viridis_d() + 
-  scale_y_continuous(labels = scales::percent)
+  scale_y_continuous(labels = scales::percent) + 
+  scale_fill_viridis_d(name = "Rating") + 
+  labs(x="Year", y="Number of Review with Rating") + 
+  theme(axis.text.x = element_text(angle = 45, vjust=0.5))
 
 p_bradshaw_area
 ```
 
+```{r bradshaw-area-plot, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("bradshaw-area.png")
+```
+
+
 We can compare the distributions of ratings given by the two critics.
 
-```{r comp-hist, message=FALSE}
+```{r comp-hist, eval=FALSE}
 
 bradshaw_reviews$byline <- "Peter Bradshaw"
 
@@ -133,7 +159,6 @@ comp_df2 <- comp_df %>%
   group_by(star_rating, byline) %>%
   summarise(count = n()) %>% group_by(byline) %>%
   mutate(perc = count/sum(count))
-
 
 comp_p <- ggplot(comp_df, 
                  aes(x = star_rating, y = ..density.., fill = byline)) + 
@@ -151,23 +176,40 @@ comp_p <- ggplot(comp_df,
 comp_p
 ```
 
+```{r bradshaw-logan-comp, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("logan-bradshaw-comp.png")
+```
+
+
 
 We can also use `gu_content()` for more general queries. For example, here's all the articles returned for "relationships" between the two given dates:
 
-```{r relationships-demo, message=FALSE}
+```{r relationships-demo, eval=FALSE}
 relations <- gu_content(query = "relationships", from_date = "2018-11-30",
                         to_date = "2018-12-30")
 
 tibble::glimpse(relations)
-
 ```
+
+```{r relations-read, echo=FALSE, message=TRUE, warning=TRUE}
+relations <- readr::read_rds("relations.rds")
+
+relations
+```
+
 
 Use the `tag` parameter to limit articles to particular sections:
 
 
-```{r}
+```{r relations-sex-demo, eval=FALSE}
 relations_sex <- gu_content(query = "relationships", from_date = "2018-11-30",
                             to_date = "2018-12-30", tag = "lifeandstyle/sex")
+
+relations_sex
+```
+
+```{r relations-sex-read, echo=FALSE, message=TRUE, warning=TRUE}
+relations_sex <- readr::read_rds("relations_sex.rds")
 
 tibble::glimpse(relations_sex)
 ```
