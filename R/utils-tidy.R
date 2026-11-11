@@ -1,6 +1,3 @@
-
-
-
 # tidy function
 
 gu_tidy <- function(df, tidy_style) {
@@ -14,27 +11,25 @@ gu_tidy <- function(df, tidy_style) {
 
   # converting date info to POSIXct or Date
   if (any(names(df) == "commentCloseDate")) {
-    df$commentCloseDate <- as.POSIXct(gsub("T", " ", df$commentCloseDate))
+    df$commentCloseDate <- as.POSIXct(gsub("T", " ", df$commentCloseDate), tz = "UTC")
   }
 
   if (any(names(df) == "webPublicationDate")) {
-    df$webPublicationDate <- as.POSIXct(gsub("T", " ", df$webPublicationDate))
+    df$webPublicationDate <- as.POSIXct(gsub("T", " ", df$webPublicationDate), tz = "UTC")
   }
 
   if (any(names(df) == "firstPublicationDate")) {
     df$firstPublicationDate <- as.POSIXct(gsub(
       "T", " ",
       df$firstPublicationDate
-    ))
+    ), tz = "UTC")
   }
 
   if (any(names(df) == "newspaperEditionDate")) {
-    df$newspaperEditionDate <- as.Date(gsub("T", " ", df$newspaperEditionDate))
+    df$newspaperEditionDate <- as.Date(gsub("T", " ", df$newspaperEditionDate), tz = "UTC")
   }
 
-  if (tidy_style == "camelCase") {
-
-  } else if (tidy_style == "period.case") {
+  if (tidy_style == "camelCase") {} else if (tidy_style == "period.case") {
     names(df) <- gsub(
       "([[:lower:]])([[:upper:]])", "\\1.\\2", names(df),
       perl = TRUE
