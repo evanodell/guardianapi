@@ -1,4 +1,3 @@
-
 #' Tags
 #'
 #' All the tags used on the Guardian website. See the
@@ -54,14 +53,14 @@
 #' \dontrun{
 #' # Return all tags containing "apple"
 #' apple1 <- gu_tags(query = "apple")
-#' 
+#'
 #' # Return all tags containing "apple" in the technology section
 #' apple2 <- gu_tags(query = "apple", section = "technology")
-#' 
+#'
 #' # Return all contributor tags in the life and style section
 #' tag_sec_type <- gu_tags(section = "lifeandstyle", tag_type = "contributor")
 #' }
-#' 
+#'
 gu_tags <- function(query = NULL, tag_type = NULL,
                     section = NULL, references = NULL, reference_type = NULL,
                     show_references = "all", ..., verbose = TRUE,
@@ -77,13 +76,12 @@ gu_tags <- function(query = NULL, tag_type = NULL,
   }
 
   dots <- rlang::list2(...) ## eval the dots
-  names(dots) <- toupper(names(dots))
   dots_vector <- c()
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
       paste0(
-        "&", toupper(names(dots[i])), "=",
+        "&", names(dots[i]), "=",
         paste0(dots[[i]], collapse = ",")
       ),
       ""

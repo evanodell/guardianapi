@@ -1,5 +1,3 @@
-
-
 #' Items
 #'
 #' @description Query and return one or more API items.
@@ -91,7 +89,7 @@
 #' \dontrun{
 #' x <- gu_content(query = "films")
 #' }
-#' 
+#'
 gu_items <- function(query = NULL, show_fields = "all", show_tags = "all",
                      tag = NULL, from_date = NULL, to_date = NULL,
                      use_date = "published", ..., verbose = TRUE,
@@ -123,13 +121,12 @@ gu_items <- function(query = NULL, show_fields = "all", show_tags = "all",
   }
 
   dots <- rlang::list2(...) ## eval the dots
-  names(dots) <- toupper(names(dots))
   dots_vector <- c()
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
       paste0(
-        "&", toupper(names(dots[i])), "=",
+        "&", names(dots[i]), "=",
         paste0(dots[[i]], collapse = ",")
       ),
       ""

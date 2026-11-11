@@ -1,5 +1,3 @@
-
-
 #' Content
 #'
 #' @description Query and return all available content in the API.
@@ -90,13 +88,13 @@
 #' @examples
 #' \dontrun{
 #' x <- gu_content(query = "films")
-#' 
+#'
 #' y <- gu_content(
 #'   query = "relationships",
 #'   from_date = "2018-11-30", to_date = "2018-12-30"
 #' )
 #' }
-#' 
+#'
 gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
                        tag = NULL, from_date = NULL, to_date = NULL,
                        use_date = "published", ..., verbose = TRUE,
@@ -128,13 +126,12 @@ gu_content <- function(query = NULL, show_fields = "all", show_tags = "all",
   }
 
   dots <- rlang::list2(...) ## eval the dots
-  names(dots) <- toupper(names(dots))
   dots_vector <- c()
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
       paste0(
-        "&", toupper(names(dots[i])), "=",
+        "&", names(dots[i]), "=",
         paste0(dots[[i]], collapse = ",")
       ),
       ""

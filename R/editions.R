@@ -1,4 +1,3 @@
-
 #' Editions
 #'
 #' The different main pages of the Guardian. As of January 2019 they are the
@@ -19,7 +18,7 @@
 #' \dontrun{
 #' uk <- gu_editions(query = "uk")
 #' }
-#' 
+#'
 gu_editions <- function(query = NULL, ..., verbose = TRUE,
                         tidy = TRUE, tidy_style = "snake_case") {
   if (!is.null(query)) {
@@ -29,13 +28,12 @@ gu_editions <- function(query = NULL, ..., verbose = TRUE,
   }
 
   dots <- rlang::list2(...) ## eval the dots
-  names(dots) <- toupper(names(dots))
   dots_vector <- c()
 
   for (i in seq_along(dots)) { # retrieve the dots
     dots_vector[i] <- ifelse(length(dots[[i]]) > 0,
       paste0(
-        "&", toupper(names(dots[i])), "=",
+        "&", names(dots[i]), "=",
         paste0(dots[[i]], collapse = ",")
       ),
       ""
